@@ -31,8 +31,8 @@ const Header = ({ currentUser }) => {
     </div>
   )
 }
- const mapStateToProps = (state) => ({
+ const mapStateToProps = ({user}) => ({
    // из root reducer берем userReducer, из него берем currentUser 
-   currentUser: state.user.currentUser
+   currentUser: user.currentUser
  })
 export default connect(mapStateToProps)(Header)
