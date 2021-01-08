@@ -1,11 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { ReactComponent as Logo } from '../../assets/crown.svg'
-import './header.styles.scss'
-import { auth } from '../../firebase/firebase.utils'
 import { connect } from 'react-redux'
-import CartIcon from '../cart-icon/cart-icon.component'
+import { Link } from 'react-router-dom'
+import { createStructuredSelector } from "reselect"
+import { ReactComponent as Logo } from '../../assets/crown.svg'
+import { auth } from '../../firebase/firebase.utils'
+import { selectCartHidden } from "../../redux/cart/cart.selectors"
+import { selectCurrentuser } from "../../redux/user/user.selector"
 import CartDropdown from '../cart-dropdown/cart-dropdown.component'
+import CartIcon from '../cart-icon/cart-icon.component'
+import './header.styles.scss'
 
 const Header = ({ currentUser, hidden }) => {
   return (
@@ -34,11 +37,10 @@ const Header = ({ currentUser, hidden }) => {
       {hidden ? null : <CartDropdown />}
     </div>
   )
-}
-//                          advanced destructuring
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  // из root reducer берем userReducer, из него берем currentUser
-  currentUser,
-  hidden,
+} 
+// в createStructuredSelector store.state попадает автоматом
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentuser,
+  hidden: selectCartHidden
 })
 export default connect(mapStateToProps)(Header)
