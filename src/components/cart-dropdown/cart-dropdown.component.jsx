@@ -5,33 +5,33 @@ import { toggleCartHidden } from '../../redux/cart/cart.actions';
 import { createStructuredSelector } from 'reselect';
 import { withRouter } from 'react-router-dom';
 import {
-  StyledButton,
-  StyledCartItems,
-  StyledCardDropdown,
-  StyledEmptyMessage,
+  CartDropdownContainer,
+  CartDropdownButton,
+  EmptyMessageContainer,
+  CartItemsContainer
 } from './cart-dropdown.styles';
 
 import { connect } from 'react-redux';
 
 const CartDropdown = ({ cartItems, history, dispatch }) => {
   return (
-    <StyledCardDropdown>
-      <StyledCartItems>
+    <CartDropdownContainer>
+      <CartItemsContainer>
         {cartItems.length ? (
           cartItems.map((cartItem) => <CartItem key={cartItem.id} item={cartItem} />)
         ) : (
-          <StyledEmptyMessage>Your cart is empty</StyledEmptyMessage>
+          <EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>
         )}
-      </StyledCartItems>
-      <StyledButton
+      </CartItemsContainer>
+      <CartDropdownButton
         onClick={() => {
           history.push('/checkout');
           dispatch(toggleCartHidden());
         }}
       >
         GO TO CHECKOUT
-      </StyledButton>
-    </StyledCardDropdown>
+      </CartDropdownButton>
+    </CartDropdownContainer>
   );
 };
 const mapStateToProps = createStructuredSelector({

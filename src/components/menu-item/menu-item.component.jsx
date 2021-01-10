@@ -13,7 +13,7 @@ const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => {
       <BackgroundImageContainer
         className="background-image"
         imageUrl={imageUrl}
-      ></BackgroundImageContainer>
+      />
       <ContentContainer className="content">
         <ContentTitle>{title.toUpperCase()}</ContentTitle>
         <ContentSubtitle>SHOP NOW</ContentSubtitle>

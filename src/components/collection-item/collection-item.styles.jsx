@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import CustomButton from '../custom-button/custom-button.component';
 
 export const CollectionItemContainer = styled.div`
@@ -10,10 +10,10 @@ export const CollectionItemContainer = styled.div`
   position: relative;
 
   &:hover {
-    div {
+    .image {
       opacity: 0.8;
     }
-    .button {
+    button {
       display: flex;
       opacity: 0.85;
     }
@@ -26,7 +26,7 @@ export const BackgroundImage = styled.div`
   background-size: cover;
   background-position: center;
   margin-bottom: 5px;
-  background-image: ${({ imageUrl }) => `{url(${imageUrl})}`};
+  background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 `;
 
 export const AddButton = styled(CustomButton)`
