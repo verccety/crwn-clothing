@@ -1,24 +1,24 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
-
-import "./menu-item.styles.scss";
+import React from 'react';
+import { withRouter } from 'react-router-dom';
+import {
+  MenuItemContainer,
+  BackgroundImageContainer,
+  ContentContainer,
+  ContentSubtitle,
+  ContentTitle,
+} from './menu-item.styles';
 const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => {
   return (
-    <div
-      className={`${size ?? ""} menu-item`}
-      onClick={() => history.push(`${match.url}${linkUrl}`)}
-    >
-      <div
+    <MenuItemContainer size={size} onClick={() => history.push(`${match.url}${linkUrl}`)}>
+      <BackgroundImageContainer
         className="background-image"
-        style={{
-          backgroundImage: `url(${imageUrl})`,
-        }}
-      ></div>
-      <div className="content">
-        <h1 className="title">{title.toUpperCase()}</h1>
-        <span className="subtitle">SHOP NOW</span>
-      </div>
-    </div>
+        imageUrl={imageUrl}
+      ></BackgroundImageContainer>
+      <ContentContainer className="content">
+        <ContentTitle>{title.toUpperCase()}</ContentTitle>
+        <ContentSubtitle>SHOP NOW</ContentSubtitle>
+      </ContentContainer>
+    </MenuItemContainer>
   );
 };
 
