@@ -51,6 +51,11 @@
       "react-app/jest"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -64,6 +69,8 @@
     ]
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^1.12.0"
+    "babel-plugin-styled-components": "^1.12.0",
+    "husky": "^4.3.7",
+    "pretty-quick": "^3.1.0"
   }
 }

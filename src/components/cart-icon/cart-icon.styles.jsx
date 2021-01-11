@@ -11,7 +11,6 @@ export const CartContainer = styled.div`
   cursor: pointer;
 `;
 
-
 export const ShoppingIcon = styled(ShoppingIconSVG)`
   width: 24px;
   height: 24px;

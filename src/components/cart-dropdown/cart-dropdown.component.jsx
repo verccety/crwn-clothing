@@ -8,7 +8,7 @@ import {
   CartDropdownContainer,
   CartDropdownButton,
   EmptyMessageContainer,
-  CartItemsContainer
+  CartItemsContainer,
 } from './cart-dropdown.styles';
 
 import { connect } from 'react-redux';
@@ -27,8 +27,7 @@ const CartDropdown = ({ cartItems, history, dispatch }) => {
         onClick={() => {
           history.push('/checkout');
           dispatch(toggleCartHidden());
-        }}
-      >
+        }}>
         GO TO CHECKOUT
       </CartDropdownButton>
     </CartDropdownContainer>

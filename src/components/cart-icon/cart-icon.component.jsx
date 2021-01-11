@@ -7,8 +7,8 @@ import { CartContainer, ShoppingIcon, ItemCountContainer } from './cart-icon.sty
 
 const CartIcon = ({ toggleCartHidden, itemCount }) => {
   return (
-    <CartContainer  onClick={toggleCartHidden}>
-      <ShoppingIcon  />
+    <CartContainer onClick={toggleCartHidden}>
+      <ShoppingIcon />
       <ItemCountContainer>{itemCount}</ItemCountContainer>
     </CartContainer>
   );

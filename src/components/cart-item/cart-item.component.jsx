@@ -9,7 +9,7 @@ import {
 const CartItem = ({ item: { imageUrl, price, name, quantity } }) => {
   return (
     <CartItemContainer>
-      <CartItemImage src={imageUrl} alt="title" />
+      <CartItemImage src={imageUrl} alt='title' />
       <ItemDetailsContainer>
         <NameSpanContainer>{name}</NameSpanContainer>
         <NameSpanContainer>
