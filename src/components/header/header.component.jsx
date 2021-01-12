@@ -5,7 +5,7 @@ import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
 import { selectCartHidden } from '../../redux/cart/cart.selectors';
 import { selectCurrentuser } from '../../redux/user/user.selector';
-import CartDropdown from '../cart-dropdown/cart-dropdown.component';
+import CartDropdownContainer from '../cart-dropdown/cart-dropdown.container';
 import CartIcon from '../cart-icon/cart-icon.component';
 import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from './header.styles';
 const Header = ({ currentUser, hidden }) => {
@@ -26,7 +26,7 @@ const Header = ({ currentUser, hidden }) => {
         )}
         <CartIcon />
       </OptionsContainer>
-      {hidden ? null : <CartDropdown />}
+      {hidden ? null : <CartDropdownContainer />}
     </HeaderContainer>
   );
 };

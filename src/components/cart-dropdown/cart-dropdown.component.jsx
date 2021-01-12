@@ -1,17 +1,12 @@
 import React from 'react';
 import CartItem from '../cart-item/cart-item.component';
-import { selectCartItems } from '../../redux/cart/cart.selectors';
 import { toggleCartHidden } from '../../redux/cart/cart.actions';
-import { createStructuredSelector } from 'reselect';
-import { withRouter } from 'react-router-dom';
 import {
   CartDropdownContainer,
   CartDropdownButton,
   EmptyMessageContainer,
   CartItemsContainer,
 } from './cart-dropdown.styles';
-
-import { connect } from 'react-redux';
 
 const CartDropdown = ({ cartItems, history, dispatch }) => {
   return (
@@ -33,7 +28,5 @@ const CartDropdown = ({ cartItems, history, dispatch }) => {
     </CartDropdownContainer>
   );
 };
-const mapStateToProps = createStructuredSelector({
-  cartItems: selectCartItems,
-});
-export default withRouter(connect(mapStateToProps)(CartDropdown));
+
+export default CartDropdown;
