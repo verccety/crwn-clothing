@@ -9,7 +9,7 @@ const Directory = ({ sections }) => {
   return (
     <DirectoryMenuContainer>
       {sections.map((
-        { id, ...othersectionProps }, // можно дестракчарить прямо так
+        { id, ...othersectionProps } // можно дестракчарить прямо так
       ) => (
         <MenuItem key={id} {...othersectionProps} />
       ))}

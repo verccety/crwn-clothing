@@ -4,11 +4,7 @@ import { createStructuredSelector } from 'reselect';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Header from './components/header/header.component';
-import {
-  auth,
-  createUserProfileDocument,
-  addCollectionAndDocuments,
-} from './firebase/firebase.utils';
+
 import CheckoutPage from './pages/checkout/checkout.component';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
@@ -20,29 +16,7 @@ import { selectCollectionsForPreview } from './redux/shop/shop.selectors';
 class App extends React.Component {
   unsubscribeFromAuth = null;
 
-  componentDidMount() {
-    const { setCurrentUser, collectionsArray } = this.props;
-
-    // параметр userAuth текущая регист. инф. о польз.
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-
-        userRef.onSnapshot((snapShot) => {
-          setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data(),
-          });
-        });
-      }
-      setCurrentUser(userAuth);
-      addCollectionAndDocuments(
-        'collections',
-        // нужен не весь объект, а только title, items
-        collectionsArray.map(({ title, items }) => ({ title, items })),
-      );
-    });
-  }
+  componentDidMount() {}
 
   componentWillUnmount() {
     this.unsubscribeFromAuth();
