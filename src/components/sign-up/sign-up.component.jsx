@@ -28,22 +28,8 @@ class SignUp extends Component {
       return;
     }
 
-    signUpStart(email, password, displayName);
+    signUpStart({ email, password, displayName });
   };
-  //   try {
-  //     const { user } = await auth.createUserWithEmailAndPassword(email, password);
-
-  //     await createUserProfileDocument(user, { displayName });
-  //     this.setState({
-  //       displayName: '',
-  //       email: '',
-  //       password: '',
-  //       confirmPassword: '',
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   handleChange = (event) => {
     const { name, value } = event.target;
@@ -98,8 +84,7 @@ class SignUp extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  signUpStart: (email, password, displayName) =>
-    dispatch(signUpStart({ email, password, displayName })),
+  signUpStart: (userCredentials) => dispatch(signUpStart(userCredentials)),
 });
 
 export default connect(null, mapDispatchToProps)(SignUp);
