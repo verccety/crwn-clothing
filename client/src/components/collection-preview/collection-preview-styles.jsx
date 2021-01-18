@@ -22,6 +22,9 @@ export const TitleContainer = styled.h1`
 export const PreviewContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  & > div {
+    margin: 6px;
+  }
 
   @media screen and (max-width: 800px) {
     display: grid;
