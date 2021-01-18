@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mutation, Query } from 'react-apollo';
+import {  useMutation, useQuery } from 'react-apollo';
 import { gql } from 'apollo-boost';
 
 import CartDropdown from './cart-dropdown.component';
@@ -16,16 +16,12 @@ const GET_CART_ITEMS = gql`
   }
 `;
 
-const CartDropdownContainer = () => (
-  <Mutation mutation={TOGGLE_CART_HIDDEN}>
-    {(toggleCartHidden) => (
-      <Query query={GET_CART_ITEMS}>
-        {({ data: { cartItems } }) => {
-          return <CartDropdown cartItems={cartItems} toggleCartHidden={toggleCartHidden} />;
-        }}
-      </Query>
-    )}
-  </Mutation>
-);
+const CartDropdownContainer = () => {
+  const {
+    data: { cartItems },
+  } = useQuery(GET_CART_ITEMS);
+  const [toggleCartHidden] = useMutation(TOGGLE_CART_HIDDEN);
+  return <CartDropdown cartItems={cartItems} toggleCartHidden={toggleCartHidden} />;
+};
 
 export default CartDropdownContainer;

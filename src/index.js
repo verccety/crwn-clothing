@@ -12,7 +12,7 @@ import { resolvers, typeDefs } from './graphql/resolvers';
 import { store, persistor } from './redux/store';
 
 import './index.css';
-import App from './App';
+import {default as App} from './App/App.container';
 
 const httpLink = createHttpLink({
   uri: 'https://crwn-clothing.com',
