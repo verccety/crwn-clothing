@@ -2,7 +2,6 @@ import React from 'react';
 
 import CollectionPreview from '../collection-preview/collection-preview.component';
 
-
 import './collections-overview.styles.scss';
 
 const CollectionsOverview = ({ collections }) => (
@@ -13,6 +12,4 @@ const CollectionsOverview = ({ collections }) => (
   </div>
 );
 
-
-
-export default (CollectionsOverview);
+export default CollectionsOverview;

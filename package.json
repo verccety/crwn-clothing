@@ -21,6 +21,7 @@
     "reselect": "4.0.0"
   },
   "devDependencies": {
+    "prettier": "2.2.1",
     "react-scripts": "^3.4.4",
     "sass": "^1.32.4"
   },
@@ -31,7 +32,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "pretty": "prettier --write \"./**/*.{js,jsx,json}\""
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -20,5 +20,4 @@ const HeaderContainer = () => (
   </Query>
 );
 
-export default HeaderContainer
-
+export default HeaderContainer;
