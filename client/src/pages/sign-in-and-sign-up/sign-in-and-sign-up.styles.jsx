@@ -5,4 +5,14 @@ export const SignInAndSignUpContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 30px auto;
+
+
+  @media screen and (max-width: 800px) {
+    width: 300px;
+    flex-direction: column;
+
+    button {
+        min-width: unset;
+      }
+  }
 `;
