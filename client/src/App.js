@@ -2,6 +2,7 @@ import React, { lazy, useEffect, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import ErrorBoundary from './components/error-boundary/error-boundary.component'
 import Header from './components/header/header.component';
 import {  GlobalStyle} from "./global.styles";
 import { checkUserSession } from './redux/user/user.actions';
@@ -26,6 +27,7 @@ const App = ({ checkUserSession, currentUser }) => {
     <GlobalStyle/>
       <Header />
       <Switch>
+      <ErrorBoundary>
       <Suspense fallback={<Spinner/>}>
         <Route exact path='/' component={HomePage} />
         <Route path='/shop' component={ShopPage} />
@@ -37,6 +39,7 @@ const App = ({ checkUserSession, currentUser }) => {
           render={() => (currentUser ? <Redirect to='/' /> : <SignInAndSignUp />)}
         />
         </Suspense>
+        </ErrorBoundary>
       </Switch>
     </div>
   );
