@@ -77,6 +77,22 @@ export const getCurrentUser = () => {
   });
 };
 
+
+export const createUserCart = async (cartItems) => {
+  const userAuth = await getCurrentUser();
+  const userRef = firestore.doc(`userCart/${userAuth.uid}`);
+  try {
+    await userRef.set({
+      cartItems
+    });
+  } catch (error) {
+    console.log('Error occured when creating user cart', error.message);
+  }
+
+return userRef;
+
+}
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 

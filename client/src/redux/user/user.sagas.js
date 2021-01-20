@@ -1,4 +1,4 @@
-import { takeLatest, put, all, call } from 'redux-saga/effects';
+import { takeLatest, put, all, call, select } from 'redux-saga/effects';
 import UserActionTypes from './user.types';
 import {
   signInSuccess,
@@ -13,8 +13,10 @@ import {
   googleProvider,
   createUserProfileDocument,
   getCurrentUser,
+  createUserCart,
 } from '../../firebase/firebase.utils';
-
+import { selectCart } from '../cart/cart.selectors';
+import { fetchCartStart } from '../cart/cart.actions';
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
   try {
     const userRef = yield call(createUserProfileDocument, userAuth, additionalData);
@@ -27,6 +29,8 @@ export function* getSnapshotFromUserAuth(userAuth, additionalData) {
 
 export function* signOut() {
   try {
+    const state = yield select(selectCart);
+    yield createUserCart(state.cartItems);
     yield auth.signOut();
     yield put(signOutSuccess());
   } catch (error) {
@@ -45,12 +49,14 @@ export function* signUp({ payload: { email, password, displayName } }) {
 
 export function* signInAfterSignUp({ payload: { user, additionalData } }) {
   yield getSnapshotFromUserAuth(user, additionalData);
+  yield put(fetchCartStart(user));
 }
 
 export function* signInWithGoogle() {
   try {
     const { user } = yield auth.signInWithPopup(googleProvider);
     yield getSnapshotFromUserAuth(user);
+    yield put(fetchCartStart(user));
   } catch (error) {
     yield put(signInFailure(error));
   }
@@ -59,6 +65,7 @@ export function* signInWithEmail({ payload: { email, password } }) {
   try {
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
     yield getSnapshotFromUserAuth(user);
+    yield put(fetchCartStart(user));
   } catch (error) {
     put(signInFailure(error));
   }
