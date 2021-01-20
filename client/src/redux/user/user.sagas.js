@@ -16,7 +16,6 @@ import {
   createUserCart,
 } from '../../firebase/firebase.utils';
 import { selectCart } from '../cart/cart.selectors';
-import { fetchCartStart } from '../cart/cart.actions';
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
   try {
     const userRef = yield call(createUserProfileDocument, userAuth, additionalData);
@@ -49,14 +48,12 @@ export function* signUp({ payload: { email, password, displayName } }) {
 
 export function* signInAfterSignUp({ payload: { user, additionalData } }) {
   yield getSnapshotFromUserAuth(user, additionalData);
-  yield put(fetchCartStart(user));
 }
 
 export function* signInWithGoogle() {
   try {
     const { user } = yield auth.signInWithPopup(googleProvider);
     yield getSnapshotFromUserAuth(user);
-    yield put(fetchCartStart(user));
   } catch (error) {
     yield put(signInFailure(error));
   }
@@ -65,7 +62,6 @@ export function* signInWithEmail({ payload: { email, password } }) {
   try {
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
     yield getSnapshotFromUserAuth(user);
-    yield put(fetchCartStart(user));
   } catch (error) {
     put(signInFailure(error));
   }

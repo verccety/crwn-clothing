@@ -29,11 +29,6 @@ export const fetchCartSuccess = (cartItems) => ({
   payload: cartItems,
 });
 
-export const fetchCartStart = (userAuth) => ({
-  type: CartActionTypes.FETCH_CART_START,
-  payload: userAuth
-});
-
 export const fetchCartFailure = () => ({
   type: CartActionTypes.FETCH_CART_FAILURE,
 });
