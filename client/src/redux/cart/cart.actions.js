@@ -23,7 +23,6 @@ export const clearCart = () => ({
   type: CartActionTypes.CLEAR_CART,
 });
 
-
 export const fetchCartSuccess = (cartItems) => ({
   type: CartActionTypes.FETCH_CART_SUCCESS,
   payload: cartItems,

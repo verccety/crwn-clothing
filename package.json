@@ -25,6 +25,7 @@
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
     "concurrently": "^4.0.1",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "react-test-renderer": "^17.0.1"
   }
 }

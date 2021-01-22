@@ -1,7 +1,10 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
-import ShopActionTypes from './shop.types';
+import {
+  fetchCollectionsStart,
+  fetchCollectionsSuccess,
+  fetchCollectionsFailure,
+} from './shopSlice';
 import { firestore, convertCollectionsSnapshotToMap } from '../../firebase/firebase.utils';
-import { fetchCollectionsSuccess, fetchCollectionsFailure } from './shop.actions';
 
 function* fetchCollectionsAsync() {
   try {
@@ -14,10 +17,10 @@ function* fetchCollectionsAsync() {
   }
 }
 
-export function* fetchCollectionsStart() {
-  yield takeLatest(ShopActionTypes.FETCH_COLLECTIONS_START, fetchCollectionsAsync);
+export function* fetchCollectionsStartAsync() {
+  yield takeLatest(fetchCollectionsStart.type, fetchCollectionsAsync);
 }
 
 export function* shopSagas() {
-  yield all([call(fetchCollectionsStart)]);
+  yield all([call(fetchCollectionsStartAsync)]);
 }
