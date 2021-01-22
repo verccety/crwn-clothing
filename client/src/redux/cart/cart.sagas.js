@@ -1,15 +1,14 @@
 import { all, call, takeLatest, put, select } from 'redux-saga/effects';
-import UserActionTypes from '../user/user.types';
 import { clearCart, fetchCartSuccess } from './cartSlice';
 import { firestore } from '../../firebase/firebase.utils';
 import { selectCart } from './cart.selectors';
-
+import { signInSuccess, signOutSuccess } from '../user/userSlice';
 export function* clearCartOnSignOut() {
   yield put(clearCart());
 }
 
 export function* onSignOutSuccess() {
-  yield takeLatest(UserActionTypes.SIGN_OUT_SUCCESS, clearCartOnSignOut);
+  yield takeLatest(signOutSuccess.type, clearCartOnSignOut);
 }
 
 function* fetchCartAsync({ payload: { id } }) {
@@ -27,7 +26,7 @@ function* fetchCartAsync({ payload: { id } }) {
 }
 
 export function* fetchCartStartAsync() {
-  yield takeLatest(UserActionTypes.SIGN_IN_SUCCESS, fetchCartAsync);
+  yield takeLatest(signInSuccess.type, fetchCartAsync);
 }
 
 export function* cartSagas() {
